@@ -1,7 +1,7 @@
 CLANG_C_FLAGS = -Weverything -Wno-vla -Wno-covered-switch-default -Werror
 GCC_C_FLAGS = -Wall -Wextra -Werror
 
-ifeq ($(notdir $(CC)), clang)
+ifeq ($(notdir $(firstword $(subst -, ,$(notdir $(CC))))),$(filter $(firstword $(subst -, ,$(notdir $(CC)))),clang))
   CFLAGS ?= $(CLANG_C_FLAGS)
 else ifeq ($(notdir $(CC)), suncc)
   CFLAGS ?= -errwarn -errtags
@@ -11,7 +11,7 @@ else ifeq ($(notdir $(CC)),$(filter $(notdir $(CC)),armcl cl2000 cl430 cl6x cl7x
   C_OUTPUT_FILE := --output_file=
 else ifeq ($(notdir $(CC)),$(filter $(notdir $(CC)),pgcc nvc))
   CFLAGS ?= -Minform=inform -c11
-  C_OUTPUT_FILE := -o
+  C_OUTPUT_FILE :ci/gha/clang= -o
 else ifeq ($(notdir $(CC)), nvcc)
   CFLAGS ?= --Werror all-warnings
   C_OUTPUT_FILE := --output-file=
