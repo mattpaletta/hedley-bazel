@@ -1030,6 +1030,13 @@
 #  define HEDLEY_DIAGNOSTIC_DISABLE_EXTRA_SEMI
 #endif
 
+#if defined(HEDLEY_DIAGNOSTIC_DISABLE_UNSAFE_BUFFER_USAGE)
+#  undef HEDLEY_DIAGNOSTIC_DISABLE_UNSAFE_BUFFER_USAGE
+#endif
+#if HEDLEY_HAS_WARNING("-Wunsafe-buffer-usage")
+#  define HEDLEY_DIAGNOSTIC_DISABLE_UNSAFE_BUFFER_USAGE _Pragma("clang diagnostic ignored \"-Wunsafe-buffer-usage\"")
+#endif
+
 #if defined(HEDLEY_DEPRECATED)
 #  undef HEDLEY_DEPRECATED
 #endif
