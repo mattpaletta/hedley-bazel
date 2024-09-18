@@ -1,0 +1,13 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: test
+  image: ubuntu:14.04
+  environment:
+    CC: gcc-4.4
+    CXX: g++-4.4
+  commands:
+  - apt-get install -y gcc-4.4 g++-4.4
+  - make -C test
