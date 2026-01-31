@@ -1,0 +1,4 @@
+module(
+    name = "hedley",
+    version = "15.0.0",
+)
